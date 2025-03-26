@@ -8,6 +8,7 @@ with open('model_fraud_66130701701.pkl', 'rb') as file:
 
 # ฟังก์ชันในการทำนายการฉ้อโกง
 def predict_fraud(step, txn_type, amount, oldbalanceOrg, newbalanceOrig, oldbalanceDest, newbalanceDest):
+    # สร้าง DataFrame ให้มีชื่อคอลัมน์ตรงกับที่ใช้ในการฝึกโมเดล
     input_data = pd.DataFrame({
         'step': [step],
         'type': [txn_type],  # ต้องใช้ค่าที่ถูกต้องจาก LabelEncoder
@@ -17,6 +18,14 @@ def predict_fraud(step, txn_type, amount, oldbalanceOrg, newbalanceOrig, oldbala
         'oldbalanceDest': [oldbalanceDest],
         'newbalanceDest': [newbalanceDest]
     })
+
+    # ตรวจสอบว่า column names ของ input_data ตรงกับที่โมเดลต้องการ
+    expected_columns = ['step', 'type', 'amount', 'oldbalanceOrg', 'newbalanceOrig', 'oldbalanceDest', 'newbalanceDest']
+    
+    # ถ้าชื่อคอลัมน์ไม่ตรงให้จัดการกับมัน
+    input_data = input_data[expected_columns]
+    
+    # ทำนายผล
     prediction = model.predict(input_data)
     return prediction[0]
 
