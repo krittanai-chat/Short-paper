@@ -16,8 +16,7 @@ def predict_fraud(step, txn_type, amount, oldbalanceOrg, newbalanceOrig, oldbala
         'oldbalanceOrg': [oldbalanceOrg],
         'newbalanceOrig': [newbalanceOrig],
         'oldbalanceDest': [oldbalanceDest],
-        'newbalanceDest': [newbalanceDest],
-        'isFlaggedFraud': [isFlaggedFraud]
+        'newbalanceDest': [newbalanceDest]
     })
     prediction = model.predict(input_data)
     return prediction[0]
@@ -34,7 +33,6 @@ oldbalanceOrg = st.number_input("ยอดเงินเดิมของผ�
 newbalanceOrig = st.number_input("ยอดเงินใหม่ของผู้ส่ง", min_value=0.0, value=15000.0)
 oldbalanceDest = st.number_input("ยอดเงินเดิมของผู้รับ", min_value=0.0, value=5000.0)
 newbalanceDest = st.number_input("ยอดเงินใหม่ของผู้รับ", min_value=0.0, value=10000.0)
-isFlaggedFraud = st.selectbox("ธุรกรรมถูกตั้งค่าสถานะฉ้อโกงหรือไม่", [0, 1])
 
 # ปุ่มพยากรณ์
 if st.button("ทำนายการฉ้อโกง"):
