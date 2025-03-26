@@ -8,7 +8,7 @@ with open('model_fraud_66130701701.pkl', 'rb') as file:
     model = pickle.load(file)
 
 # ฟังก์ชันในการทำนายการฉ้อโกง
-def predict_fraud(step, txn_type, amount, oldbalanceOrg, newbalanceOrig, oldbalanceDest, newbalanceDest, isFlaggedFraud):
+def predict_fraud(step, txn_type, amount, oldbalanceOrg, newbalanceOrig, oldbalanceDest, newbalanceDest):
     input_data = pd.DataFrame({
         'step': [step],
         'type': [txn_type],  # ต้องใช้ค่าที่ถูกต้องจาก LabelEncoder
