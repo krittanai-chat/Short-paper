@@ -36,5 +36,5 @@ newbalanceDest = st.number_input("ยอดเงินใหม่ของผ�
 
 # ปุ่มพยากรณ์
 if st.button("ทำนายการฉ้อโกง"):
-    result = predict_fraud(step, txn_type, amount, oldbalanceOrg, newbalanceOrig, oldbalanceDest, newbalanceDest, isFlaggedFraud)
+    result = predict_fraud(step, txn_type, amount, oldbalanceOrg, newbalanceOrig, oldbalanceDest, newbalanceDest)
     st.write(f"ผลการพยากรณ์: {'เป็นการฉ้อโกง' if result == 1 else 'ไม่ใช่การฉ้อโกง'}")
